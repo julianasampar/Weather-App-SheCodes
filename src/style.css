@@ -1,0 +1,106 @@
+.banner {
+  padding: 100px 0 40px;
+}
+#city-search {
+  width: 95%;
+  padding: 5px 0 5px 5px;
+  border: 1px solid #46e093;
+  font-family: "Krona One", sans-serif;
+  color: #272727;
+  position: relative;
+  left: 40px;
+}
+#city-search:hover {
+  background: #dcffcf;
+}
+.fa-search {
+  font-size: 28px;
+  color: #46e093;
+  margin: 2px;
+  position: relative;
+  top: 30px;
+}
+#date-time {
+  text-align: right;
+  right: 12px;
+}
+
+ul {
+  padding: 0;
+}
+h1,
+h5 {
+  font-family: "Krona One", sans-serif;
+}
+h4 {
+  padding: 15px 0;
+}
+h1,
+h4,
+.main-content p {
+  text-align: center;
+}
+p {
+  font-family: "Titillium Web", sans-serif;
+}
+.prediction {
+  margin: 30px 0 0;
+}
+.other-data {
+  margin: 60px 0 0;
+}
+.other-data p {
+  text-align: left;
+  font-size: 24px;
+  margin: 0;
+}
+.days-of-week li {
+  list-style-type: none;
+  margin: 10px;
+  transition: all 100ms ease-in-out;
+}
+li:hover {
+  color: #1f5094;
+}
+.temp-button {
+  text-align: center;
+}
+.temp-button button {
+  background: #3d9468;
+  position: relative;
+  margin: 30px 0 15px;
+  border: 1px solid#1F5094;
+  transition: all 200ms ease-in-out;
+}
+.temp-celsius:hover,
+.temp-fah:hover {
+  background: #1f5094;
+  color: white;
+}
+.personalized-content {
+  margin: 80px 0 0;
+}
+.personalized-content .btn {
+  background-color: #1f5094;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  transition: all 200ms ease-in-out;
+}
+.btn:hover {
+  background: #3d9468;
+}
+
+#city-name {
+  text-transform: capitalize;
+}
+
+.fa-redo-alt {
+  text-align: center;
+  margin: 0 auto;
+  color: #3d9468;
+  transition: all 100ms ease-in-out;
+}
+.fa-redo-alt:hover {
+  color: #1f5094;
+}
