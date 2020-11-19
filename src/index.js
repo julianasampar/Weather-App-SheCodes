@@ -45,7 +45,6 @@ function cityDisplay(event) {
   cityName.innerHTML = cityDisplay.value;
   let apiKey = "6ae49199fbcb90f6780234a44e9b9db4";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityDisplay.value}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(tempDisplay);
 }
 
@@ -66,9 +65,7 @@ function tempDisplay(response) {
   description.innerHTML = `${response.data.weather[0].main}`
   min.innerHTML = `${Math.round(response.data.main.temp_min)}ºC`;
   max.innerHTML = `${Math.round(response.data.main.temp_max)}ºC`;
-  
-  console.log(response);
-  
+    
   let currentCity = response.data.name;
   let cityDisplay = document.querySelector("#city-name");
   cityDisplay.innerHTML = currentCity;
@@ -92,6 +89,11 @@ function showCurrentPosition(position) {
 
 function callBackFunction() {
   alert("Please, allow the application!");
+
+  let cityDisplay = 'New York';
+  let apiKey = "6ae49199fbcb90f6780234a44e9b9db4";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityDisplay}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(tempDisplay);
 }
 
 navigator.geolocation.getCurrentPosition(showCurrentPosition, callBackFunction);
@@ -105,13 +107,15 @@ let celsius = document.querySelector(".temp-celsius");
 let fahrenheit = document.querySelector(".temp-fah");
 
 
-function changeToCelsius() {
+function changeToCelsius(temp) {
+  temp = tempDisplay(response);
   let temperatureValue = document.querySelector("#temp-display");
-  temperatureValue.innerHTML = `${tempDisplay()}ºC`;
+  temperatureValue.innerHTML = `${temp}ºC`;
 }
-function changeToFah() {
+function changeToFah(temp) {
+  temp = tempDisplay(response);
   let temperatureValue = document.querySelector("#temp-display");
-  temperatureValue.innerHTML = `${tempDisplay() * 9/5 + 32}ºF`;
+  temperatureValue.innerHTML = `${temp * 9/5 + 32}ºF`;
 }
 
 celsius.addEventListener("click", changeToCelsius);
