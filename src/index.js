@@ -106,16 +106,12 @@ addEventListener("load", showCurrentPosition);
 let celsius = document.querySelector(".temp-celsius");
 let fahrenheit = document.querySelector(".temp-fah");
 
-
-function changeToCelsius(temp) {
-  temp = tempDisplay(response);
-  let temperatureValue = document.querySelector("#temp-display");
-  temperatureValue.innerHTML = `${temp}ºC`;
+function changeToCelsius() {
+  alert("Hello");
 }
-function changeToFah(temp) {
-  temp = tempDisplay(response);
-  let temperatureValue = document.querySelector("#temp-display");
-  temperatureValue.innerHTML = `${temp * 9/5 + 32}ºF`;
+
+function changeToFah() {
+  alert("Hi");
 }
 
 celsius.addEventListener("click", changeToCelsius);
