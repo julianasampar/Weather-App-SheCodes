@@ -85,20 +85,6 @@ li:hover {
   width: 75px;
 }
 
-.personalized-content {
-  margin: 80px 0 0;
-}
-.personalized-content .btn {
-  background-color: #1f5094;
-  color: white;
-  display: block;
-  margin: 0 auto;
-  transition: all 200ms ease-in-out;
-}
-.btn:hover {
-  background: #3d9468;
-}
-
 #city-name {
   text-transform: capitalize;
 }
