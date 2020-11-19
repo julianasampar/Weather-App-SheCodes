@@ -48,6 +48,8 @@ function cityDisplay(event) {
   axios.get(apiUrl).then(tempDisplay);
 }
 
+let tempValue;
+
 function tempDisplay(response) {
   let temp = response.data.main.temp;
   let temperatureValue = document.querySelector("#temp-display");
@@ -70,7 +72,8 @@ function tempDisplay(response) {
   let cityDisplay = document.querySelector("#city-name");
   cityDisplay.innerHTML = currentCity;
 
-  return temp;
+  tempValue = temp;
+  return tempValue;
 }
 
 citySearch.addEventListener("submit", cityDisplay);
@@ -107,11 +110,14 @@ let celsius = document.querySelector(".temp-celsius");
 let fahrenheit = document.querySelector(".temp-fah");
 
 function changeToCelsius() {
-  alert("Hello");
-}
+  let temperatureValue = document.querySelector("#temp-display");
+  temperatureValue.innerHTML = `${Math.round(tempValue)}ºC`;
+} 
 
 function changeToFah() {
-  alert("Hi");
+  let temperatureValue = document.querySelector("#temp-display");
+  temperatureValue.innerHTML = `${Math.round(tempValue * 9/5 + 32)}ºF`;
+
 }
 
 celsius.addEventListener("click", changeToCelsius);
