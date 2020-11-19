@@ -104,3 +104,10 @@ li:hover {
 .fa-redo-alt:hover {
   color: #1f5094;
 }
+
+footer p {
+  text-align: center;
+}
+footer a {
+  color: #3d9468;
+}
