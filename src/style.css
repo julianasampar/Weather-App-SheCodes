@@ -77,6 +77,10 @@ li:hover {
   background: #1f5094;
   color: white;
 }
+#icon {
+  width: 75px;
+}
+
 .personalized-content {
   margin: 80px 0 0;
 }

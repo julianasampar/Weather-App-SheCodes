@@ -67,7 +67,11 @@ function tempDisplay(response) {
   description.innerHTML = `${response.data.weather[0].main}`
   min.innerHTML = `${Math.round(response.data.main.temp_min)}ºC`;
   max.innerHTML = `${Math.round(response.data.main.temp_max)}ºC`;
-    
+  
+  // Changes the icon
+  let icon = document.querySelector("#icon");
+  icon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+
   let currentCity = response.data.name;
   let cityDisplay = document.querySelector("#city-name");
   cityDisplay.innerHTML = currentCity;
@@ -85,7 +89,6 @@ function showCurrentPosition(position) {
   let lon = (position.coords.longitude);
   let apiKey = "6ae49199fbcb90f6780234a44e9b9db4";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  console.log(position);
 
   axios.get(apiUrl).then(tempDisplay);
 }
@@ -122,6 +125,7 @@ function changeToFah() {
 
 celsius.addEventListener("click", changeToCelsius);
 fahrenheit.addEventListener("click", changeToFah);
+
 
 
 
