@@ -48,6 +48,7 @@ function cityDisplay(event) {
 }
 
 let cityData = [];
+let predictionData = [];
 
 // Gets the data and shows all the values to the cities written on the search field
 function tempDisplay(response) {
@@ -84,11 +85,13 @@ function tempDisplay(response) {
   axios.get(apiUrl).then(predictionDisplay);
   
   // Creates an array with temperature, latitude and longitude
-  cityData = [temp, lat, lon];
+  cityData = [temp, lat, lon, response.data.main.feels_like, response.data.main.temp_min, response.data.main.temp_max];
+  console.log(cityData);
   return cityData;
 }
 
 // Displays the prediction for tomorrow in the current position
+  // 
 function predictionDisplay(response) {
   let tomorrow = document.querySelector("#tomorrow-temp");
   let morning = document.querySelector("#morn");
@@ -101,6 +104,9 @@ function predictionDisplay(response) {
   day.innerHTML = `${Math.round(response.data.daily[1].feels_like.day)}ºC`
   night.innerHTML = `${Math.round(response.data.daily[1].feels_like.night)}ºC`
   evening.innerHTML = `${Math.round(response.data.daily[1].feels_like.eve)}ºC`
+
+  predictionData = [tomorrow, morning, day, night, evening];
+  return predictionData
 }
 
 
@@ -134,8 +140,6 @@ function callBackFunction() {
 
 navigator.geolocation.getCurrentPosition(showCurrentPosition, callBackFunction);
 
-
-
 // Changes unit
 // ADD the rest of the data (prediction and other data)
 
@@ -144,13 +148,26 @@ let fahrenheit = document.querySelector(".temp-fah");
 
 function changeToCelsius() {
   let temperatureValue = document.querySelector("#temp-display");
+  let feelsLike = document.querySelector("#feels");
+  let min = document.querySelector("#min");
+  let max = document.querySelector("#max");
+
   temperatureValue.innerHTML = `${Math.round(cityData[0])}ºC`;
+  feelsLike.innerHTML = `${Math.round(cityData[3])}ºC`;
+  min.innerHTML = `${Math.round(cityData[4])}ºF`;
+  max.innerHTML = `${Math.round(cityData[5])}ºF`;
 } 
 
 function changeToFah() {
   let temperatureValue = document.querySelector("#temp-display");
-  temperatureValue.innerHTML = `${Math.round(cityData[0] * 9/5 + 32)}ºF`;
+  let feelsLike = document.querySelector("#feels");
+  let min = document.querySelector("#min");
+  let max = document.querySelector("#max");
 
+  temperatureValue.innerHTML = `${Math.round(cityData[0] * 9/5 + 32)}ºF`;
+  feelsLike.innerHTML = `${Math.round(cityData[3] * 9/5 + 32)}ºF`;
+  min.innerHTML = `${Math.round(cityData[4] * 9/5 + 32)}ºF`;
+  max.innerHTML = `${Math.round(cityData[5] * 9/5 + 32)}ºF`;
 }
 
 citySearch.addEventListener("submit", cityDisplay);
