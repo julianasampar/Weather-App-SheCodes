@@ -84,7 +84,7 @@ function tempDisplay(response) {
 }
 
 // Displays the prediction for tomorrow in the current position
-function localPredictionDisplay(response) {
+function predictionDisplay(response) {
   let tomorrow = document.querySelector("#tomorrow-temp");
   let morning = document.querySelector("#morn");
   let day = document.querySelector("#day");
@@ -109,7 +109,7 @@ function showCurrentPosition(position) {
   axios.get(apiUrl).then(tempDisplay);
 
   apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,current,alerts&units=metric&appid=${apiKey}`
-  axios.get(apiUrl).then(localPredictionDisplay);
+  axios.get(apiUrl).then(predictionDisplay);
 }
 
 // Shows the data for New York in case the user doesn't allow the application
@@ -118,9 +118,14 @@ function callBackFunction() {
   alert("Please, allow the application!");
 
   let cityDisplay = 'New York';
+  let lat = 40.730610;
+  let lon = -73.935242;
   let apiKey = "6ae49199fbcb90f6780234a44e9b9db4";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityDisplay}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(tempDisplay);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,current,alerts&units=metric&appid=${apiKey}`
+  axios.get(apiUrl).then(predictionDisplay);
 }
 
 navigator.geolocation.getCurrentPosition(showCurrentPosition, callBackFunction);
