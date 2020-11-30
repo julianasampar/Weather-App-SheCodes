@@ -13,18 +13,18 @@ var suffix;
 
 // FIX!!! Add suffix for 11st, 12nd, 13rd, etc...
 function getSuffix(date) { 
- if (date === 0) {
+ if (date === 0 || date === 20 || date === 30) {
    suffix = "st";
  } 
- if (date === 1) {
+ if (date === 1 || date === 21) {
    suffix = "nd";
  } 
- if (date === 2) {
+ if (date === 2 || date === 22) {
    suffix = "rd";
  }
- if (date > 3) {
+ else {
    suffix = "th";
- }
+ } 
  return suffix;
 }
 
@@ -86,7 +86,6 @@ function tempDisplay(response) {
   
   // Creates an array with temperature, latitude and longitude
   cityData = [temp, lat, lon, response.data.main.feels_like, response.data.main.temp_min, response.data.main.temp_max];
-  console.log(cityData);
   return cityData;
 }
 
@@ -106,7 +105,6 @@ function predictionDisplay(response) {
   evening.innerHTML = `${Math.round(response.data.daily[1].feels_like.eve)}ºC`
 
   predictionData = [response.data.daily[1].temp.day, response.data.daily[1].feels_like.morn, response.data.daily[1].feels_like.day, response.data.daily[1].feels_like.night, response.data.daily[1].feels_like.eve];
-  console.log(predictionData);
   return predictionData;
 }
 
