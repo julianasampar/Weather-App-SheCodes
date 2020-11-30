@@ -49,6 +49,7 @@ function cityDisplay(event) {
 
 let cityData = [];
 
+// Gets the data and shows all the values to the cities written on the search field
 function tempDisplay(response) {
   let temp = response.data.main.temp;
   let lat = response.data.coord.lat;
@@ -78,6 +79,10 @@ function tempDisplay(response) {
   let cityDisplay = document.querySelector("#city-name");
   cityDisplay.innerHTML = currentCity;
 
+  let apiKey = "6ae49199fbcb90f6780234a44e9b9db4";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,current,alerts&units=metric&appid=${apiKey}`
+  axios.get(apiUrl).then(predictionDisplay);
+  
   // Creates an array with temperature, latitude and longitude
   cityData = [temp, lat, lon];
   return cityData;
@@ -113,7 +118,6 @@ function showCurrentPosition(position) {
 }
 
 // Shows the data for New York in case the user doesn't allow the application
-// ADD PREDICTION API!!!
 function callBackFunction() {
   alert("Please, allow the application!");
 
