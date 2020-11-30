@@ -104,9 +104,6 @@ function predictionDisplay(response) {
 citySearch.addEventListener("submit", cityDisplay);
 
 // Shows the temperature in the current position
-function showbla() {
-  alert("bla");
-}
 
 function showCurrentPosition(position) {
   let lat = (position.coords.latitude);
@@ -117,7 +114,7 @@ function showCurrentPosition(position) {
   axios.get(apiUrl).then(tempDisplay);
 
   apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,current,alerts&units=metric&appid=${apiKey}`
-  axios.get(apiUrl).then(predictionDisplay, showbla);
+  axios.get(apiUrl).then(predictionDisplay);
 }
 
 
