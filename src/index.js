@@ -93,11 +93,11 @@ function predictionDisplay(response) {
   let evening = document.querySelector("#eve");
 
   console.log(response);
-  tomorrow.innerHTML = `${response.data.daily[1].temp.day}ºC`;
-  morning.innerHTML = `${response.data.daily[1].feels_like.morn}ºC`
-  day.innerHTML = `${response.data.daily[1].feels_like.day}ºC`
-  night.innerHTML = `${response.data.daily[1].feels_like.night}ºC`
-  evening.innerHTML = `${response.data.daily[1].feels_like.eve}ºC`  
+  tomorrow.innerHTML = `${Math.round(response.data.daily[1].temp.day)}ºC`;
+  morning.innerHTML = `${Math.round(response.data.daily[1].feels_like.morn)}ºC`
+  day.innerHTML = `${Math.round(response.data.daily[1].feels_like.day)}ºC`
+  night.innerHTML = `${Math.round(response.data.daily[1].feels_like.night)}ºC`
+  evening.innerHTML = `${Math.round(response.data.daily[1].feels_like.eve)}ºC`  
 
 }
 
