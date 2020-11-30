@@ -48,10 +48,12 @@ function cityDisplay(event) {
   axios.get(apiUrl).then(tempDisplay);
 }
 
-let tempValue;
+let cityData = [];
 
 function tempDisplay(response) {
   let temp = response.data.main.temp;
+  let lat = response.data.coord.lat;
+  let lon = response.data.coord.lon;
   let temperatureValue = document.querySelector("#temp-display");
   let feelsLike = document.querySelector("#feels");
   let humidity = document.querySelector("#humidity");
@@ -67,17 +69,23 @@ function tempDisplay(response) {
   description.innerHTML = `${response.data.weather[0].main}`
   min.innerHTML = `${Math.round(response.data.main.temp_min)}ºC`;
   max.innerHTML = `${Math.round(response.data.main.temp_max)}ºC`;
-  
+
   // Changes the icon
   let icon = document.querySelector("#icon");
   icon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 
+  // Updates the name of the city
   let currentCity = response.data.name;
   let cityDisplay = document.querySelector("#city-name");
   cityDisplay.innerHTML = currentCity;
 
-  tempValue = temp;
-  return tempValue;
+  // Creates an array with temperature, latitude and longitude
+  cityData = [temp, lat, lon];
+  return cityData;
+}
+
+function predictionDisplay(response) {
+  console.log(response);
 }
 
 citySearch.addEventListener("submit", cityDisplay);
@@ -91,6 +99,15 @@ function showCurrentPosition(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(tempDisplay);
+}
+
+function showPrediction(event) {
+  event.preventDefault;
+  let lat = cityData[1];
+  let lon = cityData[2];
+  let apiKey = "6ae49199fbcb90f6780234a44e9b9db4";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,current,alerts&units=metric&appid=${apiKey}`
+  axios.get(apiUrl).then(predictionDisplay);
 }
 
 function callBackFunction() {
@@ -114,12 +131,12 @@ let fahrenheit = document.querySelector(".temp-fah");
 
 function changeToCelsius() {
   let temperatureValue = document.querySelector("#temp-display");
-  temperatureValue.innerHTML = `${Math.round(tempValue)}ºC`;
+  temperatureValue.innerHTML = `${Math.round(cityData[0])}ºC`;
 } 
 
 function changeToFah() {
   let temperatureValue = document.querySelector("#temp-display");
-  temperatureValue.innerHTML = `${Math.round(tempValue * 9/5 + 32)}ºF`;
+  temperatureValue.innerHTML = `${Math.round(cityData[0] * 9/5 + 32)}ºF`;
 
 }
 
