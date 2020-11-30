@@ -84,13 +84,20 @@ function tempDisplay(response) {
   return cityData;
 }
 
+
 function predictionDisplay(response) {
+  let tomorrow = document.querySelector("#tomorrow-temp");
   console.log(response);
+  tomorrow.innerHTML = `${response.data.daily[1].temp.day}ºC`;
+
 }
 
 citySearch.addEventListener("submit", cityDisplay);
 
 // Shows the temperature in the current position
+function showbla() {
+  alert("bla");
+}
 
 function showCurrentPosition(position) {
   let lat = (position.coords.latitude);
@@ -99,16 +106,12 @@ function showCurrentPosition(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(tempDisplay);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,current,alerts&units=metric&appid=${apiKey}`
+  axios.get(apiUrl).then(predictionDisplay, showbla);
 }
 
-function showPrediction(event) {
-  event.preventDefault;
-  let lat = cityData[1];
-  let lon = cityData[2];
-  let apiKey = "6ae49199fbcb90f6780234a44e9b9db4";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,current,alerts&units=metric&appid=${apiKey}`
-  axios.get(apiUrl).then(predictionDisplay);
-}
+
 
 function callBackFunction() {
   alert("Please, allow the application!");
