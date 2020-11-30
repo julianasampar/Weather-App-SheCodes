@@ -1,5 +1,4 @@
 // Sets the current Time
-
 let now = new Date();
 
 let hour = now.getHours();
@@ -35,9 +34,9 @@ let dateDisplay = document.querySelector("#date-time");
 dateDisplay.innerHTML = dateTime;
 
 // Sets the city and changes the data
-
 let citySearch = document.querySelector(".city-search");
 
+// Gets API from city name's temperature 
 function cityDisplay(event) {
   event.preventDefault();
   let cityDisplay = document.querySelector("#city-search");
@@ -84,27 +83,23 @@ function tempDisplay(response) {
   return cityData;
 }
 
-
-function predictionDisplay(response) {
+// Displays the prediction for tomorrow in the current position
+function localPredictionDisplay(response) {
   let tomorrow = document.querySelector("#tomorrow-temp");
   let morning = document.querySelector("#morn");
   let day = document.querySelector("#day");
   let night = document.querySelector("#night");
   let evening = document.querySelector("#eve");
 
-  console.log(response);
   tomorrow.innerHTML = `${Math.round(response.data.daily[1].temp.day)}ºC`;
   morning.innerHTML = `${Math.round(response.data.daily[1].feels_like.morn)}ºC`
   day.innerHTML = `${Math.round(response.data.daily[1].feels_like.day)}ºC`
   night.innerHTML = `${Math.round(response.data.daily[1].feels_like.night)}ºC`
-  evening.innerHTML = `${Math.round(response.data.daily[1].feels_like.eve)}ºC`  
-
+  evening.innerHTML = `${Math.round(response.data.daily[1].feels_like.eve)}ºC`
 }
 
-citySearch.addEventListener("submit", cityDisplay);
 
-// Shows the temperature in the current position
-
+// Gets the API to the temperature and prediction in the current position
 function showCurrentPosition(position) {
   let lat = (position.coords.latitude);
   let lon = (position.coords.longitude);
@@ -114,11 +109,11 @@ function showCurrentPosition(position) {
   axios.get(apiUrl).then(tempDisplay);
 
   apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,current,alerts&units=metric&appid=${apiKey}`
-  axios.get(apiUrl).then(predictionDisplay);
+  axios.get(apiUrl).then(localPredictionDisplay);
 }
 
-
-
+// Shows the data for New York in case the user doesn't allow the application
+// ADD PREDICTION API!!!
 function callBackFunction() {
   alert("Please, allow the application!");
 
@@ -130,10 +125,10 @@ function callBackFunction() {
 
 navigator.geolocation.getCurrentPosition(showCurrentPosition, callBackFunction);
 
-addEventListener("load", showCurrentPosition);
 
 
-// Changes unit (FIX!!!)
+// Changes unit
+// ADD the rest of the data (prediction and other data)
 
 let celsius = document.querySelector(".temp-celsius");
 let fahrenheit = document.querySelector(".temp-fah");
@@ -149,6 +144,8 @@ function changeToFah() {
 
 }
 
+citySearch.addEventListener("submit", cityDisplay);
+addEventListener("load", showCurrentPosition);
 celsius.addEventListener("click", changeToCelsius);
 fahrenheit.addEventListener("click", changeToFah);
 
