@@ -142,12 +142,7 @@ function callBackFunction() {
 navigator.geolocation.getCurrentPosition(showCurrentPosition, callBackFunction);
 
 // Changes unit
-// ADD the rest of the data (prediction and other data)
-
-let celsius = document.querySelector(".temp-celsius");
-let fahrenheit = document.querySelector(".temp-fah");
-
-function changeToCelsius() {
+function tempConversion() {
   let temperatureValue = document.querySelector("#temp-display");
   let feelsLike = document.querySelector("#feels");
   let min = document.querySelector("#min");
@@ -157,44 +152,41 @@ function changeToCelsius() {
   let day = document.querySelector("#day");
   let night = document.querySelector("#night");
   let evening = document.querySelector("#eve");
-
-  temperatureValue.innerHTML = `${Math.round(cityData[0])}ºC`;
-  feelsLike.innerHTML = `${Math.round(cityData[3])}ºC`;
-  min.innerHTML = `${Math.round(cityData[4])}ºC`;
-  max.innerHTML = `${Math.round(cityData[5])}ºC`;
-  tomorrow.innerHTML = `${Math.round(predictionData[0])}ºC`;
-  morning.innerHTML = `${Math.round(predictionData[1])}ºC`;
-  day.innerHTML = `${Math.round(predictionData[2])}ºC`;
-  night.innerHTML = `${Math.round(predictionData[3])}ºC`;
-  evening.innerHTML = `${Math.round(predictionData[4])}ºC`;
+      function changeToCelsius() {
+      temperatureValue.innerHTML = `${Math.round(cityData[0])}ºC`;
+      feelsLike.innerHTML = `${Math.round(cityData[3])}ºC`;
+      min.innerHTML = `${Math.round(cityData[4])}ºC`;
+      max.innerHTML = `${Math.round(cityData[5])}ºC`;
+      tomorrow.innerHTML = `${Math.round(predictionData[0])}ºC`;
+       morning.innerHTML = `${Math.round(predictionData[1])}ºC`;
+       day.innerHTML = `${Math.round(predictionData[2])}ºC`;
+      night.innerHTML = `${Math.round(predictionData[3])}ºC`;
+      evening.innerHTML = `${Math.round(predictionData[4])}ºC`;
 } 
 
-function changeToFah() {
-  let temperatureValue = document.querySelector("#temp-display");
-  let feelsLike = document.querySelector("#feels");
-  let min = document.querySelector("#min");
-  let max = document.querySelector("#max");
-  let tomorrow = document.querySelector("#tomorrow-temp");
-  let morning = document.querySelector("#morn");
-  let day = document.querySelector("#day");
-  let night = document.querySelector("#night");
-  let evening = document.querySelector("#eve");
-
-  temperatureValue.innerHTML = `${Math.round(cityData[0] * 9/5 + 32)}ºF`;
-  feelsLike.innerHTML = `${Math.round(cityData[3] * 9/5 + 32)}ºF`;
-  min.innerHTML = `${Math.round(cityData[4] * 9/5 + 32)}ºF`;
-  max.innerHTML = `${Math.round(cityData[5] * 9/5 + 32)}ºF`;
-  tomorrow.innerHTML = `${Math.round(predictionData[0]* 9/5 + 32)}ºF`;
-  morning.innerHTML = `${Math.round(predictionData[1] * 9/5 + 32)}ºF`;
-  day.innerHTML = `${Math.round(predictionData[2] * 9/5 + 32)}ºF`;
-  night.innerHTML = `${Math.round(predictionData[3] * 9/5 + 32)}ºF`;
-  evening.innerHTML = `${Math.round(predictionData[4] * 9/5 + 32)}ºF`;
+      function changeToFah() {
+      temperatureValue.innerHTML = `${Math.round(cityData[0] * 9/5 + 32)}ºF`;
+      feelsLike.innerHTML = `${Math.round(cityData[3] * 9/5 + 32)}ºF`;
+      min.innerHTML = `${Math.round(cityData[4] * 9/5 + 32)}ºF`;
+      max.innerHTML = `${Math.round(cityData[5] * 9/5 + 32)}ºF`;
+      tomorrow.innerHTML = `${Math.round(predictionData[0]* 9/5 + 32)}ºF`;
+      morning.innerHTML = `${Math.round(predictionData[1] * 9/5 + 32)}ºF`;
+      day.innerHTML = `${Math.round(predictionData[2] * 9/5 + 32)}ºF`;
+      night.innerHTML = `${Math.round(predictionData[3] * 9/5 + 32)}ºF`;
+     evening.innerHTML = `${Math.round(predictionData[4] * 9/5 + 32)}ºF`;
 }
+  let celsius = document.querySelector(".temp-celsius");
+  let fahrenheit = document.querySelector(".temp-fah");
+
+  celsius.addEventListener("click", changeToCelsius);
+  fahrenheit.addEventListener("click", changeToFah);
+}
+
+tempConversion();
 
 citySearch.addEventListener("submit", cityDisplay);
 addEventListener("load", showCurrentPosition);
-celsius.addEventListener("click", changeToCelsius);
-fahrenheit.addEventListener("click", changeToFah);
+
 
 
 
