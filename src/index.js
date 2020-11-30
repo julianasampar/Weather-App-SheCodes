@@ -105,8 +105,9 @@ function predictionDisplay(response) {
   night.innerHTML = `${Math.round(response.data.daily[1].feels_like.night)}ºC`
   evening.innerHTML = `${Math.round(response.data.daily[1].feels_like.eve)}ºC`
 
-  predictionData = [tomorrow, morning, day, night, evening];
-  return predictionData
+  predictionData = [response.data.daily[1].temp.day, response.data.daily[1].feels_like.morn, response.data.daily[1].feels_like.day, response.data.daily[1].feels_like.night, response.data.daily[1].feels_like.eve];
+  console.log(predictionData);
+  return predictionData;
 }
 
 
@@ -151,11 +152,21 @@ function changeToCelsius() {
   let feelsLike = document.querySelector("#feels");
   let min = document.querySelector("#min");
   let max = document.querySelector("#max");
+  let tomorrow = document.querySelector("#tomorrow-temp");
+  let morning = document.querySelector("#morn");
+  let day = document.querySelector("#day");
+  let night = document.querySelector("#night");
+  let evening = document.querySelector("#eve");
 
   temperatureValue.innerHTML = `${Math.round(cityData[0])}ºC`;
   feelsLike.innerHTML = `${Math.round(cityData[3])}ºC`;
-  min.innerHTML = `${Math.round(cityData[4])}ºF`;
-  max.innerHTML = `${Math.round(cityData[5])}ºF`;
+  min.innerHTML = `${Math.round(cityData[4])}ºC`;
+  max.innerHTML = `${Math.round(cityData[5])}ºC`;
+  tomorrow.innerHTML = `${Math.round(predictionData[0])}ºC`;
+  morning.innerHTML = `${Math.round(predictionData[1])}ºC`;
+  day.innerHTML = `${Math.round(predictionData[2])}ºC`;
+  night.innerHTML = `${Math.round(predictionData[3])}ºC`;
+  evening.innerHTML = `${Math.round(predictionData[4])}ºC`;
 } 
 
 function changeToFah() {
@@ -163,11 +174,21 @@ function changeToFah() {
   let feelsLike = document.querySelector("#feels");
   let min = document.querySelector("#min");
   let max = document.querySelector("#max");
+  let tomorrow = document.querySelector("#tomorrow-temp");
+  let morning = document.querySelector("#morn");
+  let day = document.querySelector("#day");
+  let night = document.querySelector("#night");
+  let evening = document.querySelector("#eve");
 
   temperatureValue.innerHTML = `${Math.round(cityData[0] * 9/5 + 32)}ºF`;
   feelsLike.innerHTML = `${Math.round(cityData[3] * 9/5 + 32)}ºF`;
   min.innerHTML = `${Math.round(cityData[4] * 9/5 + 32)}ºF`;
   max.innerHTML = `${Math.round(cityData[5] * 9/5 + 32)}ºF`;
+  tomorrow.innerHTML = `${Math.round(predictionData[0]* 9/5 + 32)}ºF`;
+  morning.innerHTML = `${Math.round(predictionData[1] * 9/5 + 32)}ºF`;
+  day.innerHTML = `${Math.round(predictionData[2] * 9/5 + 32)}ºF`;
+  night.innerHTML = `${Math.round(predictionData[3] * 9/5 + 32)}ºF`;
+  evening.innerHTML = `${Math.round(predictionData[4] * 9/5 + 32)}ºF`;
 }
 
 citySearch.addEventListener("submit", cityDisplay);
